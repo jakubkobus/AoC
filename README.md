@@ -1,4 +1,4 @@
-# [Advent of Code](https://adventofcode.com "AoC site") challenges
+# [Advent of Code](https://adventofcode.com) challenges
 | Month |  ⭐  |
 | ----- | ---- |
 | 2022  |  17  |
