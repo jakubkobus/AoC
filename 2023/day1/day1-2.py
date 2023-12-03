@@ -24,20 +24,8 @@ def repairDigits(line: str) -> str:
             
     return out
 
-# Part 1
-with open('day1/input.txt', 'r') as f:
-    lines = [l.strip() for l in f.readlines()]
-    lines = [*map(filterDigits, lines)]
-    
-    sum_ = 0
-    
-    for line in lines:
-        sum_ += int(line[0]) * 10 + int(line[-1])
-        
-    print(sum_)
-
 # Part 2
-with open('day1/input.txt', 'r') as f:
+with open('2023/day1/input.txt', 'r') as f:
     lines = [l.strip() for l in f.readlines()]
     lines = [*map(repairDigits, lines)]
     lines = [*map(filterDigits, lines)]
