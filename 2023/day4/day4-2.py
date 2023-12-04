@@ -5,7 +5,7 @@ def fetchCardInfo(line: str) -> list:
     pulled, winning = gameData.split('|')
     return [pulled.split(), winning.split()]
 
-with open('2023/day4/input.txt', 'r') as f:
+with open('2023/day4/sample.txt', 'r') as f:
     lines = [l.strip() for l in f.readlines()]
     cardsInfo = map(fetchCardInfo, lines)
     
