@@ -1,4 +1,4 @@
-# [Advent of Code](https://adventofcode.com) annual challenge
+# *Advent of Code* annual challenge solutions
 | Year |  ⭐  |
 | ---- | ---- |
 | 2023 |  7   |
