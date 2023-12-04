@@ -99,7 +99,6 @@ with open('2023/day3/input.txt', 'r') as f:
     tokens = []
     for idx, line in enumerate(lines):
         tokens.append(fetchLineInfo(line, idx))
-        print(tokens[-1])
     
     sum_ = 0
     for lineTokens in tokens:
