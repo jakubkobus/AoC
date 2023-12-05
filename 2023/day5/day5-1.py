@@ -4,8 +4,7 @@ def mapValues(to, start, length, seed):
     return seed
 
 with open('2023/day5/input.txt', 'r') as f:
-    maps   = ['seed', 'soil', 'fertilizer', 'water', 'light', 'temperature', 'humidity', 'location']
-    values = [    [],     [],           [],      [],      [],            [],         [],         []]
+    values = [[] for _ in range(8)]
     
     i, first = 0, True
     for idx, line in enumerate(f.readlines()):
