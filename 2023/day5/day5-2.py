@@ -1,3 +1,7 @@
+raise NotImplementedError
+
+import numpy as np
+
 def mapValues(to, start, length, seed):
     if seed >= start and seed < start + length:
         return seed + to - start
@@ -28,9 +32,17 @@ with open('2023/day5/input.txt', 'r') as f:
     for i in range(0, len(values[0][0]), 2):
         value = values[0][0][i]
         length = values[0][0][i + 1]
-        print(i)
         
-        for val in range(value, value + length):
+        
+        valsToCheck = set()
+        for step in range(1, len(values)):
+            for map_ in values[step]:
+                print(step)
+                valsToCheck.update(np.intersect1d(range(value, value + length), range(map_[1], map_[1] + map_[2])))
+                
+        print(i, len(valsToCheck))
+        
+        for val in valsToCheck:
             seed = val
             for step in range(1, 1 + len(values) - 1):
                 for map_ in values[step]:
@@ -38,7 +50,5 @@ with open('2023/day5/input.txt', 'r') as f:
                     seed = mapValues(*map_, temp)
                     if seed != temp: break
             locations.append(seed)
-            
-        for step in range(1, len(values))
     
     print(min(locations))
