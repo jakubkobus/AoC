@@ -27,7 +27,7 @@ with open('2023/day5/input.txt', 'r') as f:
     locations = []
     for value in values[0][0]:
         seed = value
-        for step in range(1, 1 + len(values) - 1):
+        for step in range(1, len(values)):
             for map_ in values[step]:
                 temp = seed
                 seed = mapValues(*map_, temp)

@@ -1,11 +1,9 @@
-raise NotImplementedError
-
 def mapValues(to, start, length, seed):
     if seed >= start and seed < start + length:
         return seed + to - start
     return seed
 
-with open('2023/day5/sample.txt', 'r') as f:
+with open('2023/day5/input.txt', 'r') as f:
     values = [[] for _ in range(8)]
     
     i, first = 0, True
@@ -27,13 +25,20 @@ with open('2023/day5/sample.txt', 'r') as f:
         first = False
 
     locations = []
-    for value in values[0][0]:
-        seed = value
-        for step in range(1, 1 + len(values) - 1):
-            for map_ in values[step]:
-                temp = seed
-                seed = mapValues(*map_, temp)
-                if seed != temp: break
-        locations.append(seed)
+    for i in range(0, len(values[0][0]), 2):
+        value = values[0][0][i]
+        length = values[0][0][i + 1]
+        print(i)
+        
+        for val in range(value, value + length):
+            seed = val
+            for step in range(1, 1 + len(values) - 1):
+                for map_ in values[step]:
+                    temp = seed
+                    seed = mapValues(*map_, temp)
+                    if seed != temp: break
+            locations.append(seed)
+            
+        for step in range(1, len(values))
     
     print(min(locations))
