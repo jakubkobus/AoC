@@ -1,5 +1,3 @@
-raise NotImplementedError
-
 from itertools import chain
 
 def getType(hand: str) -> int:
@@ -12,9 +10,17 @@ def getType(hand: str) -> int:
     for key in dct:
         for cnt in range(5):
             if dct[key] == cnt + 1: cnts[cnt] += 1
-            
-    maxIdx = cnts.index(max(cnts))
-            
+    
+    if 'J' in hand:
+        maxHand, bestOption = 0, ''
+        for c in 'AKQT98765432':
+            type_ = getType(hand.replace('J', c))
+            if type_ > maxHand:
+                maxHand = type_
+                bestOption = c
+                
+        return maxHand
+    
     res = [[5, 0, 0, 0, 0], #? 0 - High card
            [3, 1, 0, 0, 0], #? 1 - One pair
            [1, 2, 0, 0, 0], #? 2 - Two pair
@@ -33,7 +39,7 @@ with open('2023/day7/input.txt', 'r') as f:
         hand, bid = line.split()
         ranks[getType(hand)].append({'hand': hand, 'bid': int(bid)})
     
-    key = 'AKQJT98765432'
+    key = 'AKQT98765432J'
     for idx, rank in enumerate(ranks):
         ranks[idx] = sorted(rank, key=lambda w: [key.index(c) for c in w['hand']], reverse=True)
     
