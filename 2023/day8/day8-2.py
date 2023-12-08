@@ -1,4 +1,4 @@
-raise NotImplementedError
+from math import lcm
 
 class Step:
     def __init__(self, element, left, right):
@@ -25,7 +25,12 @@ def getStepsA(steps: list) -> list:
         if step.element.endswith('A'): res.append(step)
     return res
 
-with open('2023/day8/sample.txt', 'r') as f:
+def zIdx(lst: list) -> bool:
+    for i, e in enumerate(lst):
+        if e['element'].endswith('Z'): return i
+    return -1
+
+with open('2023/day8/input.txt', 'r') as f:
     lines = [l.strip() for l in f.readlines()]
     
     ins = ['L', 'R']
@@ -34,6 +39,7 @@ with open('2023/day8/sample.txt', 'r') as f:
     
     stepsA = getStepsA(steps)
     loop = [[] for _ in range(len(stepsA))]
+    loopTo = [0 for _ in range(len(stepsA))]
     
     for idx, step in enumerate(stepsA):
         curr = steps.index(step)
@@ -42,12 +48,16 @@ with open('2023/day8/sample.txt', 'r') as f:
             temp = {'element': steps[curr].element, 'insIdx': i % len(instructions)}
             
             if temp in loop[idx]:
-                loop[idx].append(loop[idx].index(temp))
+                loopTo[idx] = loop[idx].index(temp)
                 break
             else: loop[idx].append(temp)
             
             nextElement = steps[curr].instructions[ins.index(instructions[i % len(instructions)])]
             curr = indexOf(nextElement, steps)
             i += 1
-    for l in loop:
-        print(len(l), l[-1])
+
+    zIdxs = [zIdx(l) for l in loop]
+    print(lcm(*zIdxs)) #! Thanks to https://github.com/makes
+        
+    
+    
