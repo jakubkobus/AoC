@@ -1,3 +1,5 @@
+raise NotImplementedError
+
 from itertools import chain
 
 class Vec2:
@@ -36,7 +38,7 @@ def getLastDir(pos: Vec2, last: Vec2) -> int:
         return 3 if (pos.x - last.x) == 1 else 1
     return -1
 
-with open('2023/day10/input.txt', 'r') as f:
+with open('2023/day10/sample.txt', 'r') as f:
     #? board[y][x] = chr
     board = [l.strip() for l in f.readlines()]
     width, height = len(board[0]), len(board)
@@ -82,6 +84,8 @@ with open('2023/day10/input.txt', 'r') as f:
         for y in range(len(n)):
             for x in range(len(n[y])):
                 result[y][x] += n[y][x]
+                
+    print('\n'.join(['\t'.join([str(cell) for cell in row]) for row in result]))
     
     chained = [*chain.from_iterable(result)]
     maxNum = max(chained)
