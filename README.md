@@ -1,4 +1,4 @@
-# *Advent of Code* annual challenge solutions
+# *Advent of Code* stars
 | Year |  ⭐  |
 | ---- | ---- |
 | 2023 |  19  |
